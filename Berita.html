@@ -4,13 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SMAN 3 GORONTALO</title>
-    
-    <!-- CDN - Dibiarkan sama karena ini alamat internet, pasti jalan -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    
     <script>
-        // Konfigurasi Tailwind - Sama seperti punya kamu
         tailwind.config = {
             theme: {
                 extend: {
@@ -36,145 +32,150 @@
             }
         }
     </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-gradient {
+                background: linear-gradient(135deg, #7B2CBF 0%, #9D4EDD 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+            .bg-gradient-utama {
+                background: linear-gradient(135deg, #7B2CBF 0%, #9D4EDD 100%);
+            }
 
-    <!-- ⚠️ PERUBAHAN UTAMA: CSS dipindah ke sini agar terbaca sempurna -->
-    <style>
-        /* UTILITAS KUSTOM */
-        .content-auto {
-            content-visibility: auto;
-        }
-        .text-gradient {
-            background: linear-gradient(135deg, #7B2CBF 0%, #9D4EDD 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .bg-gradient-utama {
-            background: linear-gradient(135deg, #7B2CBF 0%, #9D4EDD 100%);
-        }
+            .bg-netral-latar {
+                background-image: url('gambar/latar.png');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+            
+            .bg-gradient-statistik {
+                background-image: url('gambar/organisasi/batik-sekolah.png');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-color: rgba(0, 0, 0, 0.354);
+                background-blend-mode: darken;
+            }
+            .bg-gradient-fasilitas {
+                background: linear-gradient(135deg, #7B2CBF 0%, #9D4EDD 100%);
+            }
 
-        /* ✅ PERBAIKAN JALUR GAMBAR - Gunakan huruf kecil dan garis miring di depan */
-        .bg-netral-latar {
-            background-image: url('./gambar/latar.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-        
-        .bg-gradient-statistik {
-            background-image: url('./gambar/organisasi/batik-sekolah.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-color: rgba(0, 0, 0, 0.354);
-            background-blend-mode: darken;
-        }
-        .bg-gradient-fasilitas {
-            background: linear-gradient(135deg, #7B2CBF 0%, #9D4EDD 100%);
-        }
+            .bg-gradient-to-br-fasilitas {
+                background-image: url('gambar/organisasi/batik-fasilitas.png');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+            .animate-float {
+                animation: float 6s ease-in-out infinite;
+            }
+            @keyframes float {
+                0% { transform: translateY(0px); }
+                50% { transform: translateY(-12px); }
+                100% { transform: translateY(0px); }
+            }
 
-        .bg-gradient-to-br-fasilitas {
-            background-image: url('./gambar/organisasi/batik-fasilitas.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
+            /* Animasi Muncul */
+            .fade-in {
+                opacity: 0;
+                transform: translateY(30px);
+                transition: all 0.7s ease-in-out;
+            }
+            .fade-in.show {
+                opacity: 1;
+                transform: translateY(0);
+            }
 
-        /* ANIMASI */
-        .animate-float {
-            animation: float 6s ease-in-out infinite;
-        }
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-12px); }
-            100% { transform: translateY(0px); }
-        }
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.7s ease-in-out;
-        }
-        .fade-in.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-        .card-hover:hover {
-            transform: translateY(-4px);
-        }
-        .image-zoom img {
-            transition: transform: 0.4s ease;
-        }
-        .image-zoom:hover img {
-            transform: scale(1.05);
-        }
-        .stat-number {
-            display: inline-block;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            transform-style: preserve-3d;
-        }
-        .stat-number.spin {
-            animation: spinCount 1.2s ease-out forwards;
-        }
+            /* Efek Kartu */
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-4px);
+            }
+            .image-zoom img {
+                transition: transform 0.4s ease;
+            }
+            .image-zoom:hover img {
+                transform: scale(1.05);
+            }
 
-        /* TOMBOL SCROLL KE ATAS */
-        #scrollToTopBtn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 45px;
-            height: 45px;
-            background-color: #7B2CBF;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            font-size: 20px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px);
-            transition: all 0.4s ease;
-            z-index: 9999;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        }
-        #scrollToTopBtn.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        #scrollToTopBtn:hover {
-            background-color: #9D4EDD;
-        }
+            .stat-number {
+                display: inline-block;
+                transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+                transform-style: preserve-3d;
+            }
 
-        /* ANIMASI LOADING */
-        .loading-spinner {
-            width: 60px;
-            height: 60px;
-            border: 4px solid #E0AAFF;
-            border-top: 4px solid #7B2CBF;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+            .stat-number.spin {
+                animation: spinCount 1.2s ease-out forwards;
+            }
 
-        /* ANIMASI MENU HP */
-        .menu-mobile {
-            transition: all 0.3s ease;
-            max-height: 0;
-            overflow: hidden;
-            opacity: 0;
-        }
-        .menu-mobile.active {
-            max-height: 500px;
-            opacity: 1;
+            /* TOMBOL SCROLL KE ATAS */
+            #scrollToTopBtn {
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                width: 45px;
+                height: 45px;
+                background-color: #7B2CBF;
+                color: white;
+                border: none;
+                border-radius: 50%;
+                font-size: 20px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(20px);
+                transition: all 0.4s ease;
+                z-index: 9999;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            }
+
+            #scrollToTopBtn.show {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+
+            #scrollToTopBtn:hover {
+                background-color: #9D4EDD;
+            }
+
+            /* ANIMASI LOADING */
+            .loading-spinner {
+                width: 60px;
+                height: 60px;
+                border: 4px solid #E0AAFF;
+                border-top: 4px solid #7B2CBF;
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+            }
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+            
+            /* ANIMASI MENU HP */
+            .menu-mobile {
+                transition: all 0.3s ease;
+                max-height: 0;
+                overflow: hidden;
+                opacity: 0;
+            }
+            .menu-mobile.active {
+                max-height: 500px;
+                opacity: 1;
+            }
+            
         }
     </style>
 </head>
@@ -192,7 +193,7 @@
         <div class="container mx-auto px-6 lg:px-12 py-4 flex justify-between items-center">
             <div class="flex items-center gap-3">
                 <div class="w-12 h-12 flex items-center justify-center">
-                    <img src="Gambar/LOGO SMANTIG.png" class="w-full h-full object-contain">
+                    <img src="gambar/logo-smantig.png" class="w-full h-full object-contain" alt="Logo SMANTIG">
                 </div>
                 <div>
                     <h1 class="text-lg md:text-xl font-bold text-gray-800">SMAN 3 GORONTALO</h1>
@@ -203,12 +204,12 @@
             <!-- Navigasi Desktop -->
             <nav class="hidden md:flex gap-8">
                 <a href="#beranda" class="font-medium text-gray-700 hover:text-utama transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-utama after:transition-all after:duration-300">Beranda</a>
-                <a href="Informasi.html" class="font-medium text-gray-700 hover:text-utama transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-utama after:transition-all after:duration-300">Informasi</a>
+                <a href="informasi.html" class="font-medium text-gray-700 hover:text-utama transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-utama after:transition-all after:duration-300">Informasi</a>
                 <a href="#berita" class="font-medium text-gray-700 hover:text-utama transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-utama after:transition-all after:duration-300">Berita</a>
-                <a href="Berita.html" class="font-medium text-gray-700 hover:text-utama transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-utama after:transition-all after:duration-300">Organisasi</a>
-                <a href="Berita.html" class="font-medium text-gray-700 hover:text-utama transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-utama after:transition-all after:duration-300">Guru & Staf</a>
-                <a href="Berita.html" class="font-medium text-gray-700 hover:text-utama transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-utama after:transition-all after:duration-300">Prestasi</a>
-                <a href="Berita.html" class="font-medium text-gray-700 hover:text-utama transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-utama after:transition-all after:duration-300">Fasilitas</a>
+                <a href="berita.html" class="font-medium text-gray-700 hover:text-utama transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-utama after:transition-all after:duration-300">Organisasi</a>
+                <a href="berita.html" class="font-medium text-gray-700 hover:text-utama transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-utama after:transition-all after:duration-300">Guru & Staf</a>
+                <a href="berita.html" class="font-medium text-gray-700 hover:text-utama transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-utama after:transition-all after:duration-300">Prestasi</a>
+                <a href="berita.html" class="font-medium text-gray-700 hover:text-utama transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-utama after:transition-all after:duration-300">Fasilitas</a>
             </nav>
 
             <!-- Tombol Menu HP -->
@@ -221,12 +222,12 @@
         <div id="mobileMenu" class="menu-mobile md:hidden bg-white/95 backdrop-blur-md shadow-lg mx-4 mb-4 rounded-xl">
             <nav class="flex flex-col gap-3 p-5">
                 <a href="#beranda" class="font-medium text-gray-700 hover:text-utama py-2 transition-colors">Beranda</a>
-                <a href="Informasi.html" class="font-medium text-gray-700 hover:text-utama py-2 transition-colors">Informasi</a>
+                <a href="informasi.html" class="font-medium text-gray-700 hover:text-utama py-2 transition-colors">Informasi</a>
                 <a href="#berita" class="font-medium text-gray-700 hover:text-utama py-2 transition-colors">Berita</a>
-                <a href="Berita.html" class="font-medium text-gray-700 hover:text-utama py-2 transition-colors">Organisasi</a>
-                <a href="Berita.html" class="font-medium text-gray-700 hover:text-utama py-2 transition-colors">Guru & Staf</a>
-                <a href="Berita.html" class="font-medium text-gray-700 hover:text-utama py-2 transition-colors">Prestasi</a>
-                <a href="Berita.html" class="font-medium text-gray-700 hover:text-utama py-2 transition-colors">Fasilitas</a>
+                <a href="berita.html" class="font-medium text-gray-700 hover:text-utama py-2 transition-colors">Organisasi</a>
+                <a href="berita.html" class="font-medium text-gray-700 hover:text-utama py-2 transition-colors">Guru & Staf</a>
+                <a href="berita.html" class="font-medium text-gray-700 hover:text-utama py-2 transition-colors">Prestasi</a>
+                <a href="berita.html" class="font-medium text-gray-700 hover:text-utama py-2 transition-colors">Fasilitas</a>
             </nav>
         </div>
     </header>
@@ -249,7 +250,7 @@
                         <a href="https://grhm.gorontaloprov.go.id/">Daftar Sekarang</a>
                     </button>
                     <button class="bg-white text-utama border border-terang px-9 py-3.5 rounded-2xl hover:bg-terang/10 transition-all duration-300 font-medium text-base shadow-sm hover:shadow-md">
-                        <a href="Informasi.html">Jelajahi Sekolah</a>
+                        <a href="informasi.html">Jelajahi Sekolah</a>
                     </button>
                 </div>
             </div>
@@ -258,7 +259,7 @@
             <div class="w-full lg:w-1/2 relative animate-float">
                 <div class="rounded-[2rem] overflow-hidden shadow-kuat border-4 border-white">
                     <div class="relative">
-                        <img src="Gambar/Foto Sekolah.jpeg" alt="Suasana Sekolah Modern" class="w-full h-auto object-cover">
+                        <img src="gambar/foto-sekolah.jpeg" alt="Suasana Sekolah Modern" class="w-full h-auto object-cover">
                         <div class="absolute inset-0 bg-gradient-utama opacity-60"></div>
                     </div>
                 </div>
@@ -275,7 +276,7 @@
         <div class="container mx-auto px-6 lg:px-12 flex flex-col lg:flex-row items-center gap-16">
             <!-- Ilustrasi -->
             <div class="w-full lg:w-1/2">
-                <img src="Gambar/Mascot.png" alt="Ilustrasi Pendidikan" class="w-full h-auto animate-float">
+                <img src="gambar/mascot.png" alt="Ilustrasi Pendidikan" class="w-full h-auto animate-float">
             </div>
 
             <!-- Konten -->
@@ -351,7 +352,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="bg-white rounded-2xl shadow-lembut hover:shadow-sedang transition-shadow duration-300 overflow-hidden group card-hover">
                     <div class="overflow-hidden h-56 image-zoom">
-                        <img src="Gambar/Berita/Sosialisasi 1.JPG" alt="Rapor Semester" class="w-full h-full object-cover">
+                        <img src="gambar/berita/sosialisasi-1.jpg" alt="Rapor Semester" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6 text-left">
                         <span class="text-sm font-medium text-utama bg-terang/20 px-3 py-1 rounded-lg">22 Mei 2026</span>
@@ -365,7 +366,7 @@
 
                 <div class="bg-white rounded-2xl shadow-lembut hover:shadow-sedang transition-shadow duration-300 overflow-hidden group card-hover">
                     <div class="overflow-hidden h-56 image-zoom">
-                        <img src="Gambar/Berita/Sosialisasi 2.JPG" alt="Upacara Kemerdekaan" class="w-full h-full object-cover">
+                        <img src="gambar/berita/sosialisasi-2.jpg" alt="Upacara Kemerdekaan" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6 text-left">
                         <span class="text-sm font-medium text-utama bg-terang/20 px-3 py-1 rounded-lg">22 Mei 2026</span>
@@ -379,13 +380,13 @@
 
                 <div class="bg-white rounded-2xl shadow-lembut hover:shadow-sedang transition-shadow duration-300 overflow-hidden group card-hover">
                     <div class="overflow-hidden h-56 image-zoom">
-                        <img src="Gambar/Berita/Sosialisasi 3.JPG" alt="Lomba Seni Olahraga" class="w-full h-full object-cover">
+                        <img src="gambar/berita/sosialisasi-3.jpg" alt="Lomba Seni Olahraga" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6 text-left">
                         <span class="text-sm font-medium text-utama bg-terang/20 px-3 py-1 rounded-lg">4 MEI 2026</span>
                         <h4 class="text-xl font-semibold text-gray-800 mt-4 mb-2 group-hover:text-utama transition-colors">HARI PENDIDIKAN NASIONAL</h4>
                         <p class="text-gray-600 leading-relaxed">UPACARA BENDERA DALAM MEMPERINGATI HARI PENDIDIKAN NASIONAL</p>
-                        <a href="Berita.html" class="inline-block mt-4 text-utama font-medium hover:underline flex items-center gap-1">
+                        <a href="berita.html" class="inline-block mt-4 text-utama font-medium hover:underline flex items-center gap-1">
                             Baca Selengkapnya <i class="fa fa-arrow-right"></i>
                         </a>
                     </div>
@@ -402,14 +403,14 @@
                     <p class="text-sm font-semibold text-utama mb-2 tracking-wider">KEGIATAN SISWA</p>
                     <h3 class="text-3xl lg:text-4xl font-bold text-gray-800">ORGANISASI</h3>
                 </div>
-                <a href="Berita.html" class="text-lg font-medium text-utama hover:text-gelap flex items-center gap-2 transition-colors">
+                <a href="berita.html" class="text-lg font-medium text-utama hover:text-gelap flex items-center gap-2 transition-colors">
                     Lihat Semua <i class="fa fa-arrow-right"></i>
                 </a>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div class="relative rounded-2xl overflow-hidden h-[340px] shadow-lembut card-hover image-zoom">
-                    <img src="Gambar/Organisasi/BUTUH GAMBAR.png" alt="MPK" class="w-full h-full object-cover">
+                    <img src="gambar/organisasi/butuh-gambar.png" alt="MPK" class="w-full h-full object-cover">
                     <div class="absolute inset-0 bg-gradient-to-t from-gelap/80 to-transparent"></div>
                     <div class="absolute bottom-0 left-0 p-6 w-full">
                         <span class="bg-white/20 backdrop-blur-sm text-white text-xs px-2 py-1 rounded mb-2 inline-block">SMAN 3 GORONTALO</span>
@@ -418,7 +419,7 @@
                 </div>
 
                 <div class="relative rounded-2xl overflow-hidden h-[340px] shadow-lembut card-hover image-zoom">
-                    <img src="Gambar/Organisasi/OSIS.jpeg" alt="OSIS" class="w-full h-full object-cover">
+                    <img src="gambar/organisasi/osis.jpeg" alt="OSIS" class="w-full h-full object-cover">
                     <div class="absolute inset-0 bg-gradient-to-t from-gelap/80 to-transparent"></div>
                     <div class="absolute bottom-0 left-0 p-6 w-full">
                         <span class="bg-white/20 backdrop-blur-sm text-white text-xs px-2 py-1 rounded mb-2 inline-block">SMAN 3 GORONTALO</span>
@@ -427,7 +428,7 @@
                 </div>
 
                 <div class="relative rounded-2xl overflow-hidden h-[340px] shadow-lembut card-hover image-zoom">
-                    <img src="Gambar/Organisasi/PRAMUKA.jpeg" alt="PRAMUKA" class="w-full h-full object-cover">
+                    <img src="gambar/organisasi/pramuka.jpeg" alt="PRAMUKA" class="w-full h-full object-cover">
                     <div class="absolute inset-0 bg-gradient-to-t from-gelap/80 to-transparent"></div>
                     <div class="absolute bottom-0 left-0 p-6 w-full">
                         <span class="bg-white/20 backdrop-blur-sm text-white text-xs px-2 py-1 rounded mb-2 inline-block">SMAN 3 GORONTALO</span>
@@ -436,7 +437,7 @@
                 </div>
 
                 <div class="relative rounded-2xl overflow-hidden h-[340px] shadow-lembut card-hover image-zoom">
-                    <img src="Gambar/Organisasi/BUTUH GAMBAR.png" alt="PMR" class="w-full h-full object-cover">
+                    <img src="gambar/organisasi/butuh-gambar.png" alt="PMR" class="w-full h-full object-cover">
                     <div class="absolute inset-0 bg-gradient-to-t from-gelap/80 to-transparent"></div>
                     <div class="absolute bottom-0 left-0 p-6 w-full">
                         <span class="bg-white/20 backdrop-blur-sm text-white text-xs px-2 py-1 rounded mb-2 inline-block">SMAN 3 GORONTALO</span>
@@ -458,7 +459,7 @@
                     Guru & <span class="text-gradient">Staf</span>
                 </h3>
             </div>
-            <a href="Berita.html" class="group inline-flex items-center gap-2 px-6 py-3 bg-utama/5 hover:bg-utama/10 text-utama font-medium rounded-xl transition-all duration-300 hover:shadow-md">
+            <a href="berita.html" class="group inline-flex items-center gap-2 px-6 py-3 bg-utama/5 hover:bg-utama/10 text-utama font-medium rounded-xl transition-all duration-300 hover:shadow-md">
                 Lihat Semua Anggota
                 <span class="transition-transform duration-300 group-hover:translate-x-1"><i class="fa fa-arrow-right"></i></span>
             </a>
@@ -472,7 +473,7 @@
                 <!-- Kontainer Gambar dengan Efek -->
                 <div class="relative overflow-hidden h-[380px] image-zoom">
                     <!-- Foto Guru -->
-                    <img src="Gambar/Organisasi/BUTUH GAMBAR.png" alt="Ramang Kude, S.Pd" class="w-full h-full object-cover">
+                    <img src="gambar/organisasi/butuh-gambar.png" alt="Ramang Kude, S.Pd" class="w-full h-full object-cover">
                     
                     <!-- Overlay Gradient & Info Hover -->
                     <div class="absolute inset-0 bg-gradient-to-t from-gelap/90 via-gelap/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500">
@@ -504,7 +505,7 @@
                 <!-- Kontainer Gambar dengan Efek -->
                 <div class="relative overflow-hidden h-[380px] image-zoom">
                     <!-- Foto Guru -->
-                    <img src="Gambar/Organisasi/BUTUH GAMBAR.png" alt="Siti Afriani Arif, S.Pd" class="w-full h-full object-cover">
+                    <img src="gambar/organisasi/butuh-gambar.png" alt="Siti Afriani Arif, S.Pd" class="w-full h-full object-cover">
                     
                     <!-- Overlay Gradient & Info Hover -->
                     <div class="absolute inset-0 bg-gradient-to-t from-gelap/90 via-gelap/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500">
@@ -536,7 +537,7 @@
                 <!-- Kontainer Gambar dengan Efek -->
                 <div class="relative overflow-hidden h-[380px] image-zoom">
                     <!-- Foto Guru -->
-                    <img src="Gambar/Organisasi/BUTUH GAMBAR.png" alt="Ibrahim Mile, S.Pd" class="w-full h-full object-cover">
+                    <img src="gambar/organisasi/butuh-gambar.png" alt="Ibrahim Mile, S.Pd" class="w-full h-full object-cover">
                     
                     <!-- Overlay Gradient & Info Hover -->
                     <div class="absolute inset-0 bg-gradient-to-t from-gelap/90 via-gelap/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500">
@@ -568,7 +569,7 @@
                 <!-- Kontainer Gambar dengan Efek -->
                 <div class="relative overflow-hidden h-[380px] image-zoom">
                     <!-- Foto Guru -->
-                    <img src="Gambar/Organisasi/BUTUH GAMBAR.png" alt="Sarjan Kase, S.Pd" class="w-full h-full object-cover">
+                    <img src="gambar/organisasi/butuh-gambar.png" alt="Sarjan Kase, S.Pd" class="w-full h-full object-cover">
                     
                     <!-- Overlay Gradient & Info Hover -->
                     <div class="absolute inset-0 bg-gradient-to-t from-gelap/90 via-gelap/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500">
@@ -610,7 +611,7 @@
                     <p class="text-sm font-semibold text-utama mb-2 tracking-wider">KEBANGGAAN KAMI</p>
                     <h3 class="text-4xl lg:text-5xl font-bold text-gray-800">Prestasi Siswa</h3>
                 </div>
-                <a href="Berita.html" class="group hidden md:flex items-center gap-2 text-lg font-semibold text-utama hover:text-gelap transition-colors">
+                <a href="berita.html" class="group hidden md:flex items-center gap-2 text-lg font-semibold text-utama hover:text-gelap transition-colors">
                     Lihat Semua 
                     <span class="transition-transform duration-300 group-hover:translate-x-1"><i class="fa fa-arrow-right"></i></span>
                 </a>
@@ -626,7 +627,7 @@
                             </span>
                         </div>
                         <div class="h-64 overflow-hidden image-zoom">
-                            <img src="Gambar/Organisasi/BUTUH GAMBAR.png" alt="FLS3N Cabang Vokal Putera" class="w-full h-full object-cover">
+                            <img src="gambar/organisasi/butuh-gambar.png" alt="FLS3N Cabang Vokal Putera" class="w-full h-full object-cover">
                         </div>
                     </div>
                     <div class="p-7">
@@ -657,7 +658,7 @@
                             </span>
                         </div>
                         <div class="h-64 overflow-hidden image-zoom">
-                            <img src="Gambar/Organisasi/BUTUH GAMBAR.png" alt="FLS3N Cabang Komik Digital" class="w-full h-full object-cover">
+                            <img src="gambar/organisasi/butuh-gambar.png" alt="FLS3N Cabang Komik Digital" class="w-full h-full object-cover">
                         </div>
                     </div>
                     <div class="p-7">
@@ -688,7 +689,7 @@
                             </span>
                         </div>
                         <div class="h-64 overflow-hidden image-zoom">
-                            <img src="Gambar/Organisasi/BUTUH GAMBAR.png" alt="FLS3N Cabang Gitar Solo" class="w-full h-full object-cover">
+                            <img src="gambar/organisasi/butuh-gambar.png" alt="FLS3N Cabang Gitar Solo" class="w-full h-full object-cover">
                         </div>
                     </div>
                     <div class="p-7">
@@ -724,7 +725,7 @@
                     Fasilitas <span class="text-gradient">Sekolah</span> <br>
                 </h3>
             </div>
-            <a href="Berita.html" class="group inline-flex items-center gap-2 px-6 py-3 bg-utama/5 hover:bg-utama/10 text-utama font-medium rounded-xl transition-all duration-300 hover:shadow-md">
+            <a href="berita.html" class="group inline-flex items-center gap-2 px-6 py-3 bg-utama/5 hover:bg-utama/10 text-utama font-medium rounded-xl transition-all duration-300 hover:shadow-md">
                 Lihat Semua Fasilitas
                 <span class="transition-transform duration-300 group-hover:translate-x-1"><i class="fa fa-arrow-right"></i></span>
             </a>
@@ -743,438 +744,229 @@
                 </div>
                 <!-- Gambar -->
                 <div class="h-72 overflow-hidden">
-                    <img src="gambar/Organisasi/BUTUH GAMBAR.png" alt="Laboratorium Kimia" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <img src="gambar/organisasi/butuh-gambar.png" alt="Laboratorium Kimia" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                 </div>
                 <!-- Overlay Gradient -->
                 <div class="absolute inset-0 bg-gradient-to-t from-gelap/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <!-- Konten Teks -->
-                <div class="p-6 absolute bottom-0 left-0 w-full transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                    <h4 class="text-white text-2xl font-bold mb-1 drop-shadow-lg">Laboratorium Kimia</h4>
-                    <p class="text-white/80 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">Peralatan lengkap & standar nasional</p>
+                <div class="p-6 absolute bottom-0 left-0 w-full transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                    <h4 class="text-2xl font-bold text-white mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500">Laboratorium Kimia</h4>
+                    <p class="text-white/80 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">Dilengkapai peralatan laboratorium standar untuk praktikum dan penelitian siswa.</p>
                 </div>
             </div>
 
-            <!-- Kartu Fasilitas 2 : Laboratorium Biologi -->
+            <!-- Fasilitas 2 : Perpustakaan -->
             <div class="group relative bg-netral rounded-[2rem] overflow-hidden shadow-minimal hover:shadow-kuat transition-all duration-500 border border-abu/30 card-hover image-zoom">
+                <!-- Badge Kategori -->
                 <div class="absolute top-5 left-5 z-10">
                     <span class="bg-white/80 backdrop-blur-md text-gelap text-sm font-semibold px-4 py-2 rounded-full shadow-sm">
-                        <i class="fa fa-leaf mr-2 text-utama"></i> Laboratorium
+                        <i class="fa fa-book mr-2 text-utama"></i> Perpustakaan
                     </span>
                 </div>
+                <!-- Gambar -->
                 <div class="h-72 overflow-hidden">
-                    <img src="gambar/Organisasi/BUTUH GAMBAR.png" alt="Laboratorium Biologi" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <img src="gambar/organisasi/butuh-gambar.png" alt="Perpustakaan Sekolah" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                 </div>
+                <!-- Overlay Gradient -->
                 <div class="absolute inset-0 bg-gradient-to-t from-gelap/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div class="p-6 absolute bottom-0 left-0 w-full transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                    <h4 class="text-white text-2xl font-bold mb-1 drop-shadow-lg">Laboratorium Biologi</h4>
-                    <p class="text-white/80 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">Koleksi spesimen & ruang praktik</p>
+                <!-- Konten Teks -->
+                <div class="p-6 absolute bottom-0 left-0 w-full transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                    <h4 class="text-2xl font-bold text-white mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500">Perpustakaan</h4>
+                    <p class="text-white/80 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">Koleksi buku lengkap, ruang baca nyaman, dan akses literatur digital.</p>
                 </div>
             </div>
 
-            <!-- Kartu Fasilitas 3 : Laboratorium Fisika -->
+            <!-- Fasilitas 3 : Lapangan Olahraga -->
             <div class="group relative bg-netral rounded-[2rem] overflow-hidden shadow-minimal hover:shadow-kuat transition-all duration-500 border border-abu/30 card-hover image-zoom">
-                <div class="absolute top-5 left-5 z-10">
-                    <span class="bg-white/80 backdrop-blur-md text-gelap text-sm font-semibold px-4 py-2 rounded-full shadow-sm">
-                        <i class="fa fa-cogs mr-2 text-utama"></i> Laboratorium
-                    </span>
-                </div>
-                <div class="h-72 overflow-hidden">
-                    <img src="gambar/Organisasi/BUTUH GAMBAR.png" alt="Laboratorium Fisika" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                </div>
-                <div class="absolute inset-0 bg-gradient-to-t from-gelap/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div class="p-6 absolute bottom-0 left-0 w-full transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                    <h4 class="text-white text-2xl font-bold mb-1 drop-shadow-lg">Laboratorium Fisika</h4>
-                    <p class="text-white/80 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">Alat percobaan modern & aman</p>
-                </div>
-            </div>
-
-            <!-- Kartu Fasilitas 4 : Perpustakaan -->
-            <div class="group relative bg-netral rounded-[2rem] overflow-hidden shadow-minimal hover:shadow-kuat transition-all duration-500 border border-abu/30 card-hover image-zoom">
-                <div class="absolute top-5 left-5 z-10">
-                    <span class="bg-white/80 backdrop-blur-md text-gelap text-sm font-semibold px-4 py-2 rounded-full shadow-sm">
-                        <i class="fa fa-laptop mr-2 text-utama"></i> Laboratorium
-                    </span>
-                </div>
-                <div class="h-72 overflow-hidden">
-                    <img src="gambar/Organisasi/BUTUH GAMBAR.png" alt="Perpustakaan Sekolah" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                </div>
-                <div class="absolute inset-0 bg-gradient-to-t from-gelap/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div class="p-6 absolute bottom-0 left-0 w-full transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                    <h4 class="text-white text-2xl font-bold mb-1 drop-shadow-lg">Laboratorium Komputer</h4>
-                    <p class="text-white/80 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">Super Canggih dan Modern</p>
-                </div>
-            </div>
-
-            <!-- Kartu Fasilitas 5 : Lapangan Olahraga -->
-            <div class="group relative bg-netral rounded-[2rem] overflow-hidden shadow-minimal hover:shadow-kuat transition-all duration-500 border border-abu/30 card-hover image-zoom">
+                <!-- Badge Kategori -->
                 <div class="absolute top-5 left-5 z-10">
                     <span class="bg-white/80 backdrop-blur-md text-gelap text-sm font-semibold px-4 py-2 rounded-full shadow-sm">
                         <i class="fa fa-futbol-o mr-2 text-utama"></i> Olahraga
                     </span>
                 </div>
+                <!-- Gambar -->
                 <div class="h-72 overflow-hidden">
-                    <img src="gambar/Organisasi/BUTUH GAMBAR.png" alt="Lapangan Olahraga" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <img src="gambar/organisasi/butuh-gambar.png" alt="Lapangan Olahraga" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                 </div>
+                <!-- Overlay Gradient -->
                 <div class="absolute inset-0 bg-gradient-to-t from-gelap/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div class="p-6 absolute bottom-0 left-0 w-full transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                    <h4 class="text-white text-2xl font-bold mb-1 drop-shadow-lg">Lapangan Olahraga</h4>
-                    <p class="text-white/80 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">Multifungsi & standar perlombaan</p>
+                <!-- Konten Teks -->
+                <div class="p-6 absolute bottom-0 left-0 w-full transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                    <h4 class="text-2xl font-bold text-white mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500">Lapangan Olahraga</h4>
+                    <p class="text-white/80 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">Lapangan luas untuk berbagai cabang olahraga dan kegiatan upacara.</p>
                 </div>
             </div>
 
-            <!-- Kartu Fasilitas 6 : Ruang Seni & Musik -->
+            <!-- Fasilitas 4 : Masjid -->
             <div class="group relative bg-netral rounded-[2rem] overflow-hidden shadow-minimal hover:shadow-kuat transition-all duration-500 border border-abu/30 card-hover image-zoom">
+                <!-- Badge Kategori -->
                 <div class="absolute top-5 left-5 z-10">
                     <span class="bg-white/80 backdrop-blur-md text-gelap text-sm font-semibold px-4 py-2 rounded-full shadow-sm">
-                        <i class="fa fa-book mr-2 text-utama"></i> Edukasi
+                        <i class="fa fa-mosque mr-2 text-utama"></i> Ibadah
                     </span>
                 </div>
+                <!-- Gambar -->
                 <div class="h-72 overflow-hidden">
-                    <img src="gambar/Organisasi/BUTUH GAMBAR.png" alt="Ruang Seni & Musik" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <img src="gambar/organisasi/butuh-gambar.png" alt="Masjid Sekolah" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                 </div>
+                <!-- Overlay Gradient -->
                 <div class="absolute inset-0 bg-gradient-to-t from-gelap/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div class="p-6 absolute bottom-0 left-0 w-full transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                    <h4 class="text-white text-2xl font-bold mb-1 drop-shadow-lg">Perpustakaan</h4>
-                    <p class="text-white/80 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">Ribuan buku & ruang baca nyaman</p>
+                <!-- Konten Teks -->
+                <div class="p-6 absolute bottom-0 left-0 w-full transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                    <h4 class="text-2xl font-bold text-white mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500">Masjid</h4>
+                    <p class="text-white/80 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">Tempat ibadah yang bersih, luas, dan nyaman untuk kegiatan keagamaan.</p>
+                </div>
+            </div>
+
+            <!-- Fasilitas 5 : Asrama -->
+            <div class="group relative bg-netral rounded-[2rem] overflow-hidden shadow-minimal hover:shadow-kuat transition-all duration-500 border border-abu/30 card-hover image-zoom">
+                <!-- Badge Kategori -->
+                <div class="absolute top-5 left-5 z-10">
+                    <span class="bg-white/80 backdrop-blur-md text-gelap text-sm font-semibold px-4 py-2 rounded-full shadow-sm">
+                        <i class="fa fa-bed mr-2 text-utama"></i> Asrama
+                    </span>
+                </div>
+                <!-- Gambar -->
+                <div class="h-72 overflow-hidden">
+                    <img src="gambar/organisasi/butuh-gambar.png" alt="Asrama Sekolah" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                </div>
+                <!-- Overlay Gradient -->
+                <div class="absolute inset-0 bg-gradient-to-t from-gelap/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <!-- Konten Teks -->
+                <div class="p-6 absolute bottom-0 left-0 w-full transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                    <h4 class="text-2xl font-bold text-white mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500">Asrama</h4>
+                    <p class="text-white/80 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">Fasilitas hunian lengkap, aman, dan terawat untuk siswa berasrama.</p>
+                </div>
+            </div>
+
+            <!-- Fasilitas 6 : Ruang Kelas -->
+            <div class="group relative bg-netral rounded-[2rem] overflow-hidden shadow-minimal hover:shadow-kuat transition-all duration-500 border border-abu/30 card-hover image-zoom">
+                <!-- Badge Kategori -->
+                <div class="absolute top-5 left-5 z-10">
+                    <span class="bg-white/80 backdrop-blur-md text-gelap text-sm font-semibold px-4 py-2 rounded-full shadow-sm">
+                        <i class="fa fa-building mr-2 text-utama"></i> Ruang Belajar
+                    </span>
+                </div>
+                <!-- Gambar -->
+                <div class="h-72 overflow-hidden">
+                    <img src="gambar/organisasi/butuh-gambar.png" alt="Ruang Kelas" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                </div>
+                <!-- Overlay Gradient -->
+                <div class="absolute inset-0 bg-gradient-to-t from-gelap/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <!-- Konten Teks -->
+                <div class="p-6 absolute bottom-0 left-0 w-full transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                    <h4 class="text-2xl font-bold text-white mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500">Ruang Kelas</h4>
+                    <p class="text-white/80 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">Kelas yang nyaman, bersih, dan dilengkapi fasilitas pendukung pembelajaran.</p>
                 </div>
             </div>
 
         </div>
-
-        <!-- FASILITAS PENDUKUNG + Logo -->
-        <div class="mt-20 p-8 md:p-12 bg-gradient-to-br-fasilitas from-netral to-terang/10 rounded-[2rem] shadow-lembut border border-abu/30">
-            <div class="text-center mb-12">
-                <h4 class="text-2xl md:text-3xl font-bold text-gray-800">Fasilitas Pendukung Lainnya</h4>
-            </div>
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-8 text-center">
-                <div class="flex flex-col items-center gap-3 p-4 rounded-xl hover:bg-white/60 transition-all duration-300 hover:shadow-sm">
-                    <div class="w-14 h-14 rounded-xl bg-gradient-utama text-white flex items-center justify-center text-xl shadow-lembut">
-                        <i class="fa fa-cutlery"></i>
-                    </div>
-                    <span class="font-medium text-gray-700">Kantin Sehat</span>
-                </div>
-                <div class="flex flex-col items-center gap-3 p-4 rounded-xl hover:bg-white/60 transition-all duration-300 hover:shadow-sm">
-                    <div class="w-14 h-14 rounded-xl bg-gradient-utama text-white flex items-center justify-center text-xl shadow-lembut">
-                        <i class="fa fa-medkit"></i>
-                    </div>
-                    <span class="font-medium text-gray-700">UKS</span>
-                </div>
-                <div class="flex flex-col items-center gap-3 p-4 rounded-xl hover:bg-white/60 transition-all duration-300 hover:shadow-sm">
-                    <div class="w-14 h-14 rounded-xl bg-gradient-utama text-white flex items-center justify-center text-xl shadow-lembut">
-                        <i class="fa fa-wifi"></i>
-                    </div>
-                    <span class="font-medium text-gray-700">Wi-Fi Sekolah</span>
-                </div>
-                <div class="flex flex-col items-center gap-3 p-4 rounded-xl hover:bg-white/60 transition-all duration-300 hover:shadow-sm">
-                    <div class="w-14 h-14 rounded-xl bg-gradient-utama text-white flex items-center justify-center text-xl shadow-lembut">
-                        <i class="fa fa-music"></i>
-                    </div>
-                    <span class="font-medium text-gray-700">Seni & Musik</span>
-                </div>
-                <div class="flex flex-col items-center gap-3 p-4 rounded-xl hover:bg-white/60 transition-all duration-300 hover:shadow-sm">
-                    <div class="w-14 h-14 rounded-xl bg-gradient-utama text-white flex items-center justify-center text-xl shadow-lembut">
-                        <i class="fa fa-shield"></i>
-                    </div>
-                    <span class="font-medium text-gray-700">Keamanan 24 Jam</span>
-                </div>
-                <div class="flex flex-col items-center gap-3 p-4 rounded-xl hover:bg-white/60 transition-all duration-300 hover:shadow-sm">
-                    <div class="w-14 h-14 rounded-xl bg-gradient-utama text-white flex items-center justify-center text-xl shadow-lembut">
-                        <i class="fa fa-tree"></i>
-                    </div>
-                    <span class="font-medium text-gray-700">Taman Hijau</span>
-                </div>
-            </div>
-        </div>
-
     </div>
 </section>
 
-        <!-- TOMBOL SCROLL KE ATAS -->
-            <button id="scrollToTopBtn">↑</button>
-        <!-- FOOTER  -->
-    <footer class="bg-gradient-to-br from-gelap via-[#4A148C] to-gelap text-white pt-20 pb-8 fade-in relative overflow-hidden">
-        <!-- Elemen Dekorasi Latar -->
-        <div class="absolute top-0 left-0 w-full h-full opacity-5">
-            <div class="absolute -top-24 -right-24 w-96 h-96 bg-terang rounded-full blur-3xl"></div>
-            <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-utama rounded-full blur-3xl"></div>
-        </div>
-
-        <div class="container mx-auto px-6 lg:px-12 relative z-10">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-16">
-                <!-- Tentang Sekolah -->
-                <div class="space-y-5">
-                    <div class="flex items-center gap-3 mb-2">
+    <!-- FOOTER -->
+    <footer class="bg-gradient-to-br from-gelap to-utama text-white/80 pt-20 pb-6">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <!-- Kolom 1: Tentang Sekolah -->
+                <div>
+                    <div class="flex items-center gap-3 mb-5">
+                        <img src="gambar/logo-smantig.png" alt="Logo SMANTIG" class="w-12 h-12 object-contain">
                         <h4 class="text-xl font-bold text-white">SMAN 3 GORONTALO</h4>
                     </div>
-                    <p class="text-gray-200 leading-relaxed">
-                        Mewujudkan siswa berprestasi, berkarakter, dan berwawasan luas melalui pendidikan unggulan dan sistem asrama terbaik sejak tahun 1975.
+                    <p class="text-sm leading-relaxed mb-5">
+                        Sekolah unggulan berbasis asrama yang mencetak generasi berprestasi, berkarakter, dan berakhlak mulia sejak tahun 1975.
                     </p>
-                    <div class="flex gap-3 pt-2">
-                        <a href="https://www.facebook.com/hubmas.smantig" class="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-sm hover:bg-utama flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lembut border border-white/10">
-                            <i class="fa fa-facebook text-lg"></i>
-                        </a>
-                        <a href="https://www.instagram.com/smantig.3media/" class="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-sm hover:bg-utama flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lembut border border-white/10">
-                            <i class="fa fa-instagram text-lg"></i>
-                        </a>
-                        <a href="https://www.youtube.com/@smantig.3media" class="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-sm hover:bg-utama flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lembut border border-white/10">
-                            <i class="fa fa-youtube-play text-lg"></i>
-                        </a>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"><i class="fa fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/sman3gorontalo/" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"><i class="fa fa-instagram"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"><i class="fa fa-youtube-play"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"><i class="fa fa-twitter"></i></a>
                     </div>
                 </div>
 
-                <!-- Tautan Cepat -->
-                <div class="space-y-4">
-                    <h4 class="text-lg font-bold text-white relative inline-block pb-2">
-                        Tautan Cepat
-                        <span class="absolute -bottom-1 left-0 w-12 h-1 bg-terang rounded-full"></span>
-                    </h4>
-                    <ul class="space-y-3">
-                        <li>
-                            <a href="Beranda .html" class="text-gray-200 hover:text-white transition-colors flex items-center gap-2 group">
-                                <i class="fa fa-chevron-right text-xs text-terang/70 group-hover:translate-x-1 transition-transform"></i>
-                                Beranda
-                            </a>
-                        </li>
-                        <li>
-                            <a href="Informasi.html" class="text-gray-200 hover:text-white transition-colors flex items-center gap-2 group">
-                                <i class="fa fa-chevron-right text-xs text-terang/70 group-hover:translate-x-1 transition-transform"></i>
-                                Informasi Sekolah
-                            </a>
-                        </li>
-                        <li>
-                            <a href="Berita.html" class="text-gray-200 hover:text-white transition-colors flex items-center gap-2 group">
-                                <i class="fa fa-chevron-right text-xs text-terang/70 group-hover:translate-x-1 transition-transform"></i>
-                                Berita & Kegiatan
-                            </a>
-                        </li>
-                        <li>
-                            <a href="Berita.html" class="text-gray-200 hover:text-white transition-colors flex items-center gap-2 group">
-                                <i class="fa fa-chevron-right text-xs text-terang/70 group-hover:translate-x-1 transition-transform"></i>
-                                Organisasi
-                            </a>
-                        </li>
-                        <li>
-                            <a href="Berita.html" class="text-gray-200 hover:text-white transition-colors flex items-center gap-2 group">
-                                <i class="fa fa-chevron-right text-xs text-terang/70 group-hover:translate-x-1 transition-transform"></i>
-                                Fasilitas
-                            </a>
-                        </li>
+                <!-- Kolom 2: Tautan Cepat -->
+                <div>
+                    <h5 class="text-lg font-semibold text-white mb-5">Tautan Cepat</h5>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#beranda" class="hover:text-white hover:underline transition-colors">Beranda</a></li>
+                        <li><a href="informasi.html" class="hover:text-white hover:underline transition-colors">Informasi Sekolah</a></li>
+                        <li><a href="#berita" class="hover:text-white hover:underline transition-colors">Berita & Kegiatan</a></li>
+                        <li><a href="berita.html" class="hover:text-white hover:underline transition-colors">Data Guru & Staf</a></li>
+                        <li><a href="https://grhm.gorontaloprov.go.id/" class="hover:text-white hover:underline transition-colors">Pendaftaran Peserta Didik</a></li>
                     </ul>
                 </div>
 
-                <!-- Fasilitas -->
-                <div class="space-y-4">
-                    <h4 class="text-lg font-bold text-white relative inline-block pb-2">
-                        Fasilitas
-                        <span class="absolute -bottom-1 left-0 w-12 h-1 bg-terang rounded-full"></span>
-                    </h4>
-                    <ul class="space-y-3 text-gray-200">
-                        <li class="flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors">
-                            <i class="fa fa-flask text-terang w-5 text-center"></i> 
-                            <span>Laboratorium Lengkap</span>
-                        </li>
-                        <li class="flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors">
-                            <i class="fa fa-book text-terang w-5 text-center"></i> 
-                            <span>Perpustakaan Modern</span>
-                        </li>
-                        <li class="flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors">
-                            <i class="fa fa-futbol-o text-terang w-5 text-center"></i> 
-                            <span>Lapangan Olahraga</span>
-                        </li>
-                        <li class="flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors">
-                            <i class="fa fa-cutlery text-terang w-5 text-center"></i> 
-                            <span>Kantin Sehat</span>
-                        </li>
+                <!-- Kolom 3: Fasilitas & Layanan -->
+                <div>
+                    <h5 class="text-lg font-semibold text-white mb-5">Fasilitas & Layanan</h5>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#fasilitas" class="hover:text-white hover:underline transition-colors">Perpustakaan Digital</a></li>
+                        <li><a href="#fasilitas" class="hover:text-white hover:underline transition-colors">Laboratorium Lengkap</a></li>
+                        <li><a href="#fasilitas" class="hover:text-white hover:underline transition-colors">Asrama Siswa</a></li>
+                        <li><a href="#fasilitas" class="hover:text-white hover:underline transition-colors">Lapangan Olahraga</a></li>
+                        <li><a href="#fasilitas" class="hover:text-white hover:underline transition-colors">Kantin Sehat</a></li>
                     </ul>
                 </div>
 
-                <!-- Informasi Kontak Kami -->
-                <div class="space-y-4">
-                    <h4 class="text-lg font-bold text-white relative inline-block pb-2">
-                        Kontak Kami
-                        <span class="absolute -bottom-1 left-0 w-12 h-1 bg-terang rounded-full"></span>
-                    </h4>
-                    <ul class="space-y-3 text-gray-200">
-                        <li class="flex items-start gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors">
-                            <i class="fa fa-map-marker text-terang w-5 text-center mt-1"></i> 
-                            <span>Jln. Drs. Achmad Nadjamudin, No. 35, Kota Gorontalo, Gorontalo</span>
+                <!-- Kolom 4: Kontak Kami -->
+                <div>
+                    <h5 class="text-lg font-semibold text-white mb-5">Kontak Kami</h5>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start gap-3">
+                            <i class="fa fa-map-marker mt-1"></i>
+                            <span>Jl. Ki Hajar Dewantoro, Kelurahan Dulalowo, Kecamatan Kota Timur, Kota Gorontalo, Kode Pos 96113</span>
                         </li>
-                        <li class="flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors">
-                            <i class="fa fa-phone text-terang w-5 text-center"></i> 
-                            <span>(0435) 821455</span>
+                        <li class="flex items-center gap-3">
+                            <i class="fa fa-phone"></i>
+                            <span>(0435) 821223</span>
                         </li>
-                        <li class="flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors">
-                            <i class="fa fa-envelope text-terang w-5 text-center"></i> 
-                            <span>smantiggorontalo2021@gmail.com</span>
-                        </li>
-                        <li class="flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors">
-                            <i class="fa fa-clock-o text-terang w-5 text-center"></i> 
-                            <span>Senin - Jumat: 07.15 - 15.30 WITA</span>
+                        <li class="flex items-center gap-3">
+                            <i class="fa fa-envelope"></i>
+                            <span>sman3.gorontalo@sch.id</span>
                         </li>
                     </ul>
                 </div>
             </div>
 
-            <!-- Copyright -->
-            <div class="border-t border-white/10 pt-8 mt-8 text-center">
-                
-                <p class="text-gray-400 text-sm">
-                    &copy; 2025 SMAN 3 GORONTALO - DIKELOLA OLEH TIM 3MEDIA SMANTIG
-                </p>
+            <!-- Garis Pembatas & Hak Cipta -->
+            <div class="border-t border-white/20 pt-6 text-center text-xs">
+                <p>© 2026 SMA Negeri 3 Gorontalo. Hak Cipta Dilindungi Undang-Undang. | Dikembangkan oleh Tim IT SMANTIG</p>
             </div>
         </div>
     </footer>
 
-    <!-- SCRIPT UNTUK MENJALANKAN ANIMASI SCROLL -->
+    <!-- TOMBOL KEMBALI KE ATAS -->
+    <button id="scrollToTopBtn">
+        <i class="fa fa-chevron-up"></i>
+    </button>
+
+
+    <!-- JAVASCRIPT: SEMUA ANIMASI & INTERAKSI -->
     <script>
-        const fadeElements = document.querySelectorAll('.fade-in');
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('show');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        fadeElements.forEach(el => observer.observe(el));
-
-        document.addEventListener('DOMContentLoaded', function() {
-    const statSection = document.getElementById('statistik');
-    const statNumbers = document.querySelectorAll('.stat-number');
-    let animated = false;
-
-    // Fungsi memulai animasi saat elemen terlihat
-    const startAnimation = () => {
-        if (animated) return;
-        const sectionPos = statSection.getBoundingClientRect().top;
-        const screenPos = window.innerHeight / 1.3;
-
-        if (sectionPos < screenPos) {
-            animated = true;
-            statNumbers.forEach(el => {
-                const target = parseInt(el.dataset.target);
-                const hasPlus = el.dataset.plus === 'true';
-                let count = 0;
-                const duration = 1500; // durasi total animasi (ms)
-                const stepTime = 20; // kecepatan per langkah
-                const steps = duration / stepTime;
-                const increment = target / steps;
-
-                // Tambah kelas animasi spin
-                el.classList.add('spin');
-
-                // Jalankan hitungan angka
-                const counter = setInterval(() => {
-                    count += increment;
-                    if (count >= target) {
-                        el.textContent = hasPlus ? `${target.toLocaleString('id-ID')}+` : target.toLocaleString('id-ID');
-                        clearInterval(counter);
-                    } else {
-                        el.textContent = Math.ceil(count).toLocaleString('id-ID');
-                    }
-                }, stepTime);
-            });
-        }
-    };
-
-    // Jalankan saat halaman dimuat & saat di-scroll
-    window.addEventListener('scroll', startAnimation);
-    startAnimation();
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-    const statSection = document.getElementById('statistik');
-    const statNumbers = document.querySelectorAll('.stat-number');
-    let animated = false;
-
-    // === FUNGSI ANIMASI ANGKA ===
-    const startAnimation = () => {
-        if (animated) return;
-        const sectionPos = statSection.getBoundingClientRect().top;
-        const screenPos = window.innerHeight / 1.3;
-
-        if (sectionPos < screenPos) {
-            animated = true;
-            statNumbers.forEach(el => {
-                const target = parseInt(el.dataset.target);
-                const hasPlus = el.dataset.plus === 'true';
-                let count = 0;
-                const duration = 1500; // durasi total animasi (ms)
-                const stepTime = 20; // kecepatan per langkah
-                const steps = duration / stepTime;
-                const increment = target / steps;
-
-                // Tambah kelas animasi spin
-                el.classList.add('spin');
-
-                // Jalankan hitungan angka
-                const counter = setInterval(() => {
-                    count += increment;
-                    if (count >= target) {
-                        el.textContent = hasPlus ? `${target.toLocaleString('id-ID')}+` : target.toLocaleString('id-ID');
-                        clearInterval(counter);
-                    } else {
-                        el.textContent = Math.ceil(count).toLocaleString('id-ID');
-                    }
-                }, stepTime);
-            });
-        }
-    };
-
-    // === FUNGSI TOMBOL SCROLL KE ATAS ===
-    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-
-    // Tampilkan tombol jika sudah gulir ke bawah
-    const toggleScrollBtn = () => {
-        if (document.documentElement.scrollTop > 300) {
-            scrollToTopBtn.classList.add('show');
-        } else {
-            scrollToTopBtn.classList.remove('show');
-        }
-    };
-
-    // Fungsi gulir ke atas saat diklik
-    scrollToTopBtn.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth' // Efek gulir halus
-        });
-    });
-
-    // Jalankan fungsi saat di-scroll
-    window.addEventListener('scroll', () => {
-        startAnimation();
-        toggleScrollBtn();
-    });
-
-    // Cek posisi saat halaman baru dimuat
-    startAnimation();
-    toggleScrollBtn();
-});
-
- window.addEventListener('load', function() {
+        // 1. Efek Layar Pemuatan
+        window.addEventListener('load', function() {
             const loadingScreen = document.getElementById('loadingScreen');
             loadingScreen.style.opacity = '0';
-            loadingScreen.style.visibility = 'hidden';
-            
-            // Menampilkan elemen dengan animasi fade-in setelah loading selesai
             setTimeout(() => {
-                document.querySelectorAll('.fade-in').forEach(el => {
-                    el.classList.add('show');
-                });
-            }, 300);
+                loadingScreen.style.display = 'none';
+            }, 1000);
+
+            // Pemicu animasi pertama kali saat buka
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach(el => {
+                el.classList.add('show');
+            });
         });
 
-        // FUNGSI MENU HP
+        // 2. Toggle Menu Mobile / HP
         const menuToggle = document.getElementById('menuToggle');
         const mobileMenu = document.getElementById('mobileMenu');
         const menuIcon = document.getElementById('menuIcon');
-
+        
         menuToggle.addEventListener('click', function() {
             mobileMenu.classList.toggle('active');
-            // Ubah ikon dari garis jadi silang
-            if (mobileMenu.classList.contains('active')) {
+            if(mobileMenu.classList.contains('active')) {
                 menuIcon.classList.remove('fa-bars');
                 menuIcon.classList.add('fa-times');
             } else {
@@ -1182,6 +974,87 @@ document.addEventListener('DOMContentLoaded', function() {
                 menuIcon.classList.add('fa-bars');
             }
         });
+
+        // Tutup menu saat link diklik
+        const navLinks = mobileMenu.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            });
+        });
+
+        // 3. Efek Gulir Muncul (Animasi saat discroll)
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -30px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                    
+                    // Jalankan hitungan angka statistik saat masuk layar
+                    if(entry.target.classList.contains('stat-number')) {
+                        animateCount(entry.target);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in, .stat-number').forEach(el => {
+            observer.observe(el);
+        });
+
+        // 4. Animasi Hitungan Angka Statistik
+        function animateCount(el) {
+            const target = parseInt(el.getAttribute('data-target'));
+            const plus = el.hasAttribute('data-plus') ? '+' : '';
+            let count = 0;
+            const speed = 2000 / target; // Kecepatan hitung
+
+            const counter = setInterval(() => {
+                count += 1;
+                el.innerText = count + plus;
+                if(count >= target) {
+                    el.innerText = target + plus;
+                    clearInterval(counter);
+                }
+            }, speed);
+        }
+
+        // 5. Tombol Kembali ke Atas
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('show');
+            } else {
+                scrollToTopBtn.classList.remove('show');
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // 6. Efek Bayangan Navbar saat Discroll
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 20) {
+                header.classList.add('shadow-md', 'bg-white/90');
+                header.classList.remove('shadow-sm', 'bg-white/80');
+            } else {
+                header.classList.remove('shadow-md', 'bg-white/90');
+                header.classList.add('shadow-sm', 'bg-white/80');
+            }
+        });
+
     </script>
 
 </body>
