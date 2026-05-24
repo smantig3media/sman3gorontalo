@@ -1,1 +1,0 @@
-# sman3gorontalo
