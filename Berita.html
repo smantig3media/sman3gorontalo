@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMAN 3 GORONTALO - Segera Hadir</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        utama: '#7B2CBF',    // Ungu utama
+                        muda: '#9D4EDD',     // Ungu muda
+                        terang: '#E0AAFF',   // Ungu terang/pastel
+                        gelap: '#5A189A',    // Ungu tua
+                        netral: '#F8F9FE',   // Latar belakang
+                        abu: '#E5E7EB',      // Garis pembatas
+                        biruFasilitas: '#5A189A', // Warna utama fasilitas
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'lembut': '0 4px 20px rgba(123, 44, 191, 0.08)',
+                        'sedang': '0 8px 30px rgba(123, 44, 191, 0.12)',
+                        'kuat': '0 12px 40px rgba(123, 44, 191, 0.18)',
+                        'minimal': '0 2px 12px rgba(0, 0, 0, 0.05)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-gradient {
+                background: linear-gradient(135deg, #7B2CBF 0%, #9D4EDD 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+           
+            .bg-netral {
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+
+            /* TOMBOL SCROLL KE ATAS */
+            #scrollToTopBtn {
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                width: 45px;
+                height: 45px;
+                background-color: #7B2CBF;
+                color: white;
+                border: none;
+                border-radius: 50%;
+                font-size: 20px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(20px);
+                transition: all 0.4s ease;
+                z-index: 9999;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            }
+
+            #scrollToTopBtn.show {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+
+            #scrollToTopBtn:hover {
+                background-color: #9D4EDD;
+            }
+
+            /* ANIMASI LOADING */
+            .loading-spinner {
+                width: 60px;
+                height: 60px;
+                border: 4px solid #E0AAFF;
+                border-top: 4px solid #7B2CBF;
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+            }
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+
+            /* ANIMASI MENU HP */
+            .menu-mobile {
+                transition: all 0.3s ease;
+                max-height: 0;
+                overflow: hidden;
+                opacity: 0;
+            }
+            .menu-mobile.active {
+                max-height: 500px;
+                opacity: 1;
+            }
+
+            .table-info td:first-child {
+                font-weight: 500;
+                color: #374151;
+            }
+            .table-info td:last-child {
+                color: #4B5563;
+            }
+
+            .fade-in {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: all 0.6s ease;
+            }
+            .fade-in.show {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            /* ANIMASI COMING SOON */
+            .float-animation {
+                animation: float 4s ease-in-out infinite;
+            }
+            @keyframes float {
+                0% { transform: translateY(0px); }
+                50% { transform: translateY(-15px); }
+                100% { transform: translateY(0px); }
+            }
+
+            .pulse-soft {
+                animation: pulseSoft 3s infinite;
+            }
+            @keyframes pulseSoft {
+                0%, 100% { opacity: 0.9; transform: scale(1); }
+                50% { opacity: 1; transform: scale(1.05); }
+            }
+            
+        }
+    </style>
+    </head>
+<body class="bg-netral font-inter scroll-smooth">
+    
+     <!-- LAYAR PEMUATAN -->
+    <div id="loadingScreen" class="fixed inset-0 bg-white z-[99999] flex flex-col items-center justify-center transition-all duration-1000">
+        <div class="loading-spinner mb-4"></div>
+        <h3 class="text-utama font-bold text-lg">SMAN 3 GORONTALO</h3>
+        <p class="text-gray-500 text-sm">Memuat halaman...</p>
+    </div>
+
+    <!-- Header & Navigasi Modern -->
+    <header class="bg-white/80 backdrop-blur-md shadow-sm fixed w-full z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 lg:px-12 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 flex items-center justify-center">
+                    <img src="Gambar/LOGO SMANTIG.png" class="w-full h-full object-contain">
+                </div>
+                <div>
+                    <h1 class="text-lg md:text-xl font-bold text-gray-800">SMAN 3 GORONTALO</h1>
+                    <p class="text-xs text-gray-500">Kami Ada Untuk Negeri</p>
+                </div>
+            </div>
+
+            <!-- Navigasi Desktop -->
+            <nav class="hidden md:flex gap-8">
+                <a href="Beranda .html" class="font-medium text-gray-700 hover:text-utama transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-utama after:transition-all after:duration-300">Beranda</a>
+                <a href="Informasi.html" class="font-medium text-gray-700 hover:text-utama transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-utama after:transition-all after:duration-300">Informasi</a>
+                <a href="#berita" class="font-medium text-gray-700 hover:text-utama transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-utama after:transition-all after:duration-300">Berita</a>
+                <a href="Berita.html" class="font-medium text-gray-700 hover:text-utama transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-utama after:transition-all after:duration-300">Organisasi</a>
+                <a href="Berita.html" class="font-medium text-gray-700 hover:text-utama transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-utama after:transition-all after:duration-300">Guru & Staf</a>
+                <a href="Berita.html" class="font-medium text-gray-700 hover:text-utama transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-utama after:transition-all after:duration-300">Prestasi</a>
+                <a href="Berita.html" class="font-medium text-gray-700 hover:text-utama transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-utama after:transition-all after:duration-300">Fasilitas</a>
+            </nav>
+
+            <!-- Tombol Menu HP -->
+            <button id="menuToggle" class="md:hidden text-utama text-2xl z-50">
+                <i id="menuIcon" class="fa fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- MENU NAVIGASI HP -->
+        <div id="mobileMenu" class="menu-mobile md:hidden bg-white/95 backdrop-blur-md shadow-lg mx-4 mb-4 rounded-xl">
+            <nav class="flex flex-col gap-3 p-5">
+                <a href="Beranda .html" class="font-medium text-gray-700 hover:text-utama py-2 transition-colors">Beranda</a>
+                <a href="Informasi.html" class="font-medium text-gray-700 hover:text-utama py-2 transition-colors">Informasi</a>
+                <a href="#berita" class="font-medium text-gray-700 hover:text-utama py-2 transition-colors">Berita</a>
+                <a href="Berita.html" class="font-medium text-gray-700 hover:text-utama py-2 transition-colors">Organisasi</a>
+                <a href="Berita.html" class="font-medium text-gray-700 hover:text-utama py-2 transition-colors">Guru & Staf</a>
+                <a href="Berita.html" class="font-medium text-gray-700 hover:text-utama py-2 transition-colors">Prestasi</a>
+                <a href="Berita.html" class="font-medium text-gray-700 hover:text-utama py-2 transition-colors">Fasilitas</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- KONTEN UTAMA COMING SOON -->
+    <main class="min-h-screen flex items-center justify-center pt-20 pb-16 px-6 relative overflow-hidden">
+        <!-- Elemen Dekorasi Latar Belakang -->
+        <div class="absolute top-1/4 -left-20 w-72 h-72 bg-terang/30 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-1/4 -right-20 w-80 h-80 bg-muda/20 rounded-full blur-3xl"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-utama/5 rounded-full blur-3xl"></div>
+
+        <div class="container mx-auto relative z-10">
+            <div class="max-w-4xl mx-auto text-center fade-in">
+                <!-- Ikon Utama -->
+                <div class="mb-10 flex justify-center">
+                    <div class="relative float-animation">
+                        <div class="w-40 h-40 md:w-52 md:h-52 bg-gradient-to-br from-utama to-muda rounded-3xl rotate-45 flex items-center justify-center shadow-kuat">
+                            <i class="fa fa-hourglass-half text-white text-5xl md:text-6xl -rotate-45"></i>
+                        </div>
+                        <div class="absolute -top-4 -right-4 w-16 h-16 bg-terang rounded-full flex items-center justify-center shadow-lembut pulse-soft">
+                            <i class="fa fa-cog text-utama text-xl animate-spin-slow"></i>
+                        </div>
+                        <div class="absolute -bottom-4 -left-4 w-14 h-14 bg-muda rounded-full flex items-center justify-center shadow-lembut pulse-soft" style="animation-delay: 1s">
+                            <i class="fa fa-star text-white text-lg"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Teks Utama -->
+                <h1 class="text-[clamp(2.5rem,6vw,4rem)] font-extrabold text-gradient mb-4">
+                    Segera Hadir
+                </h1>
+                <h2 class="text-[clamp(1.2rem,3vw,2rem)] font-semibold text-gray-700 mb-6">
+                    Halaman Sedang Dalam Pengembangan
+                </h2>
+                <p class="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+                    Kami sedang menyiapkan konten terbaik, informasi lengkap, dan fitur menarik untuk Anda. 
+                    Terus pantau perkembangan kami karena sesuatu yang hebat sedang disiapkan khusus untuk warga SMANTIG.
+                </p>
+
+                <!-- Garis Pemisah -->
+                <div class="w-24 h-1 bg-gradient-to-r from-utama to-muda rounded-full mx-auto mb-10"></div>
+
+                <!-- Informasi Tambahan -->
+                <div class="bg-white/60 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-lembut border border-abu/50 max-w-xl mx-auto mb-8">
+                    <p class="text-gray-700 font-medium mb-4">
+                        <i class="fa fa-info-circle text-utama mr-2"></i>
+                        Nantikan pembaruan terbaru kami di:
+                    </p>
+                    <div class="flex justify-center gap-4 flex-wrap">
+                        <a href="https://www.facebook.com/hubmas.smantig" target="_blank" class="flex items-center gap-2 px-4 py-2 bg-utama/10 text-utama rounded-lg hover:bg-utama hover:text-white transition-all duration-300 hover:scale-105">
+                            <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                        <a href="https://www.instagram.com/smantig.3media/" target="_blank" class="flex items-center gap-2 px-4 py-2 bg-utama/10 text-utama rounded-lg hover:bg-utama hover:text-white transition-all duration-300 hover:scale-105">
+                            <i class="fa fa-instagram"></i> Instagram
+                        </a>
+                        <a href="https://www.youtube.com/@smantig.3media" target="_blank" class="flex items-center gap-2 px-4 py-2 bg-utama/10 text-utama rounded-lg hover:bg-utama hover:text-white transition-all duration-300 hover:scale-105">
+                            <i class="fa fa-youtube-play"></i> YouTube
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tombol Kembali -->
+                <a href="Beranda .html" class="inline-block bg-gradient-to-r from-utama to-muda text-white font-medium px-8 py-3.5 rounded-xl shadow-sedang hover:shadow-kuat transform hover:-translate-y-1 transition-all duration-300">
+                    <i class="fa fa-arrow-left mr-2"></i> Kembali ke Beranda
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- TOMBOL SCROLL KE ATAS -->
+    <button id="scrollToTopBtn">↑</button>
+
+    <!-- FOOTER  -->
+    <footer class="bg-gradient-to-br from-gelap via-[#4A148C] to-gelap text-white pt-20 pb-8 fade-in relative overflow-hidden">
+        <!-- Elemen Dekorasi Latar -->
+        <div class="absolute top-0 left-0 w-full h-full opacity-5">
+            <div class="absolute -top-24 -right-24 w-96 h-96 bg-terang rounded-full blur-3xl"></div>
+            <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-utama rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="container mx-auto px-6 lg:px-12 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-16">
+                <!-- Tentang Sekolah -->
+                <div class="space-y-5">
+                    <div class="flex items-center gap-3 mb-2">
+                        <h4 class="text-xl font-bold text-white">SMAN 3 GORONTALO</h4>
+                    </div>
+                    <p class="text-gray-200 leading-relaxed">
+                        Mewujudkan siswa berprestasi, berkarakter, dan berwawasan luas melalui pendidikan unggulan dan sistem asrama terbaik sejak tahun 1975.
+                    </p>
+                    <div class="flex gap-3 pt-2">
+                        <a href="https://www.facebook.com/hubmas.smantig" class="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-sm hover:bg-utama flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lembut border border-white/10">
+                            <i class="fa fa-facebook text-lg"></i>
+                        </a>
+                        <a href="https://www.instagram.com/smantig.3media/" class="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-sm hover:bg-utama flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lembut border border-white/10">
+                            <i class="fa fa-instagram text-lg"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@smantig.3media" class="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-sm hover:bg-utama flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lembut border border-white/10">
+                            <i class="fa fa-youtube-play text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tautan Cepat -->
+                <div class="space-y-4">
+                    <h4 class="text-lg font-bold text-white relative inline-block pb-2">
+                        Tautan Cepat
+                        <span class="absolute -bottom-1 left-0 w-12 h-1 bg-terang rounded-full"></span>
+                    </h4>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="Beranda .html" class="text-gray-200 hover:text-white transition-colors flex items-center gap-2 group">
+                                <i class="fa fa-chevron-right text-xs text-terang/70 group-hover:translate-x-1 transition-transform"></i>
+                                Beranda
+                            </a>
+                        </li>
+                        <li>
+                            <a href="Informasi.html" class="text-gray-200 hover:text-white transition-colors flex items-center gap-2 group">
+                                <i class="fa fa-chevron-right text-xs text-terang/70 group-hover:translate-x-1 transition-transform"></i>
+                                Informasi Sekolah
+                            </a>
+                        </li>
+                        <li>
+                            <a href="Berita.html" class="text-gray-200 hover:text-white transition-colors flex items-center gap-2 group">
+                                <i class="fa fa-chevron-right text-xs text-terang/70 group-hover:translate-x-1 transition-transform"></i>
+                                Berita & Kegiatan
+                            </a>
+                        </li>
+                        <li>
+                            <a href="Berita.html" class="text-gray-200 hover:text-white transition-colors flex items-center gap-2 group">
+                                <i class="fa fa-chevron-right text-xs text-terang/70 group-hover:translate-x-1 transition-transform"></i>
+                                Organisasi
+                            </a>
+                        </li>
+                        <li>
+                            <a href="Berita.html" class="text-gray-200 hover:text-white transition-colors flex items-center gap-2 group">
+                                <i class="fa fa-chevron-right text-xs text-terang/70 group-hover:translate-x-1 transition-transform"></i>
+                                Fasilitas
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Fasilitas -->
+                <div class="space-y-4">
+                    <h4 class="text-lg font-bold text-white relative inline-block pb-2">
+                        Fasilitas
+                        <span class="absolute -bottom-1 left-0 w-12 h-1 bg-terang rounded-full"></span>
+                    </h4>
+                    <ul class="space-y-3 text-gray-200">
+                        <li class="flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors">
+                            <i class="fa fa-flask text-terang w-5 text-center"></i> 
+                            <span>Laboratorium Lengkap</span>
+                        </li>
+                        <li class="flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors">
+                            <i class="fa fa-book text-terang w-5 text-center"></i> 
+                            <span>Perpustakaan Modern</span>
+                        </li>
+                        <li class="flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors">
+                            <i class="fa fa-futbol-o text-terang w-5 text-center"></i> 
+                            <span>Lapangan Olahraga</span>
+                        </li>
+                        <li class="flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors">
+                            <i class="fa fa-cutlery text-terang w-5 text-center"></i> 
+                            <span>Kantin Sehat</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Informasi Kontak Kami -->
+                <div class="space-y-4">
+                    <h4 class="text-lg font-bold text-white relative inline-block pb-2">
+                        Kontak Kami
+                        <span class="absolute -bottom-1 left-0 w-12 h-1 bg-terang rounded-full"></span>
+                    </h4>
+                    <ul class="space-y-3 text-gray-200">
+                        <li class="flex items-start gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors">
+                            <i class="fa fa-map-marker text-terang w-5 text-center mt-1"></i> 
+                            <span>Jln. Drs. Achmad Nadjamudin, No. 35, Kota Gorontalo, Gorontalo</span>
+                        </li>
+                        <li class="flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors">
+                            <i class="fa fa-phone text-terang w-5 text-center"></i> 
+                            <span>(0435) 821455</span>
+                        </li>
+                        <li class="flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors">
+                            <i class="fa fa-envelope text-terang w-5 text-center"></i> 
+                            <span>smantiggorontalo2021@gmail.com</span>
+                        </li>
+                        <li class="flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors">
+                            <i class="fa fa-clock-o text-terang w-5 text-center"></i> 
+                            <span>Senin - Jumat: 07.15 - 15.30 WITA</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="border-t border-white/10 pt-8 mt-8 text-center">
+                
+                <p class="text-gray-400 text-sm">
+                    &copy; 2025 SMAN 3 GORONTALO - DIKELOLA OLEH TIM 3MEDIA SMANTIG
+                </p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // ANIMASI SCROLL FADE IN
+            const fadeElements = document.querySelectorAll('.fade-in');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                    }
+                });
+            }, { threshold: 0.1 });
+            fadeElements.forEach(el => observer.observe(el));
+
+            // TOMBOL SCROLL KE ATAS 
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
+            // Tampilkan tombol jika sudah gulir ke bawah
+            const toggleScrollBtn = () => {
+                if (document.documentElement.scrollTop > 300) {
+                scrollToTopBtn.classList.add('show');
+                } else {
+                scrollToTopBtn.classList.remove('show');
+                }
+            };
+
+            // Fungsi gulir ke atas saat diklik
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth' // Efek gulir halus
+                });
+            });
+
+            // Jalankan fungsi saat di-scroll
+            window.addEventListener('scroll', toggleScrollBtn);
+
+            // Cek posisi saat halaman baru dimuat
+            toggleScrollBtn();
+
+            // FUNGSI MENU HP
+            const menuToggle = document.getElementById('menuToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuIcon = document.getElementById('menuIcon');
+
+            menuToggle.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
+                // Ubah ikon dari garis jadi silang
+                if (mobileMenu.classList.contains('active')) {
+                    menuIcon.classList.remove('fa-bars');
+                    menuIcon.classList.add('fa-times');
+                } else {
+                    menuIcon.classList.remove('fa-times');
+                    menuIcon.classList.add('fa-bars');
+                }
+            });
+        });
+
+        // LAYAR PEMUATAN
+        window.addEventListener('load', function() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            loadingScreen.style.opacity = '0';
+            loadingScreen.style.visibility = 'hidden';
+            
+            // Menampilkan elemen dengan animasi fade-in setelah loading selesai
+            setTimeout(() => {
+                document.querySelectorAll('.fade-in').forEach(el => {
+                    el.classList.add('show');
+                });
+            }, 300);
+        });
+    </script>
+
+</body>
+</html>

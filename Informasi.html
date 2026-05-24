@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMAN 3 GORONTALO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        utama: '#7B2CBF',    // Ungu utama
+                        muda: '#9D4EDD',     // Ungu muda
+                        terang: '#E0AAFF',   // Ungu terang/pastel
+                        gelap: '#5A189A',    // Ungu tua
+                        netral: '#F8F9FE',   // Latar belakang
+                        abu: '#E5E7EB',      // Garis pembatas
+                        biruFasilitas: '#5A189A', // Warna utama fasilitas
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'lembut': '0 4px 20px rgba(123, 44, 191, 0.08)',
+                        'sedang': '0 8px 30px rgba(123, 44, 191, 0.12)',
+                        'kuat': '0 12px 40px rgba(123, 44, 191, 0.18)',
+                        'minimal': '0 2px 12px rgba(0, 0, 0, 0.05)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-gradient {
+                background: linear-gradient(135deg, #7B2CBF 0%, #9D4EDD 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+           
+            .bg-netral {
+                background-image: url('Gambar/Latar.png');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+
+            /* TOMBOL SCROLL KE ATAS */
+            #scrollToTopBtn {
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                width: 45px;
+                height: 45px;
+                background-color: #7B2CBF;
+                color: white;
+                border: none;
+                border-radius: 50%;
+                font-size: 20px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(20px);
+                transition: all 0.4s ease;
+                z-index: 9999;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            }
+
+            #scrollToTopBtn.show {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+
+            #scrollToTopBtn:hover {
+                background-color: #9D4EDD;
+            }
+
+            /* ANIMASI LOADING */
+            .loading-spinner {
+                width: 60px;
+                height: 60px;
+                border: 4px solid #E0AAFF;
+                border-top: 4px solid #7B2CBF;
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+            }
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+
+            /* ANIMASI MENU HP */
+            .menu-mobile {
+                transition: all 0.3s ease;
+                max-height: 0;
+                overflow: hidden;
+                opacity: 0;
+            }
+            .menu-mobile.active {
+                max-height: 500px;
+                opacity: 1;
+            }
+
+            .table-info td:first-child {
+                font-weight: 500;
+                color: #374151;
+            }
+            .table-info td:last-child {
+                color: #4B5563;
+            }
+
+            .fade-in {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: all 0.6s ease;
+            }
+            .fade-in.show {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            
+        }
+    </style>
+</head>
+<body class="bg-netral font-inter scroll-smooth">
+    
+     <!-- LAYAR PEMUATAN -->
+    <div id="loadingScreen" class="fixed inset-0 bg-white z-[99999] flex flex-col items-center justify-center transition-all duration-1000">
+        <div class="loading-spinner mb-4"></div>
+        <h3 class="text-utama font-bold text-lg">SMAN 3 GORONTALO</h3>
+        <p class="text-gray-500 text-sm">Memuat halaman...</p>
+    </div>
+
+    <!-- Header & Navigasi Modern -->
+    <header class="bg-white/80 backdrop-blur-md shadow-sm fixed w-full z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 lg:px-12 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 flex items-center justify-center">
+                    <img src="Gambar/LOGO SMANTIG.png" class="w-full h-full object-contain">
+                </div>
+                <div>
+                    <h1 class="text-lg md:text-xl font-bold text-gray-800">SMAN 3 GORONTALO</h1>
+                    <p class="text-xs text-gray-500">Kami Ada Untuk Negeri</p>
+                </div>
+            </div>
+
+            <!-- Navigasi Desktop -->
+            <nav class="hidden md:flex gap-8">
+                <a href="Beranda .html" class="font-medium text-gray-700 hover:text-utama transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-utama after:transition-all after:duration-300">Beranda</a>
+                <a href="Informasi.html" class="font-medium text-gray-700 hover:text-utama transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-utama after:transition-all after:duration-300">Informasi</a>
+                <a href="Berita.html" class="font-medium text-gray-700 hover:text-utama transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-utama after:transition-all after:duration-300">Berita</a>
+                <a href="Berita.html" class="font-medium text-gray-700 hover:text-utama transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-utama after:transition-all after:duration-300">Organisasi</a>
+                <a href="Berita.html" class="font-medium text-gray-700 hover:text-utama transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-utama after:transition-all after:duration-300">Guru & Staf</a>
+                <a href="Berita.html" class="font-medium text-gray-700 hover:text-utama transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-utama after:transition-all after:duration-300">Prestasi</a>
+                <a href="Berita.html" class="font-medium text-gray-700 hover:text-utama transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-utama after:transition-all after:duration-300">Fasilitas</a>
+            </nav>
+
+            <!-- Tombol Menu HP -->
+            <button id="menuToggle" class="md:hidden text-utama text-2xl z-50">
+                <i id="menuIcon" class="fa fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- MENU NAVIGASI HP -->
+        <div id="mobileMenu" class="menu-mobile md:hidden bg-white/95 backdrop-blur-md shadow-lg mx-4 mb-4 rounded-xl">
+            <nav class="flex flex-col gap-3 p-5">
+                <a href="Beranda .html" class="font-medium text-gray-700 hover:text-utama py-2 transition-colors">Beranda</a>
+                <a href="Informasi.html" class="font-medium text-gray-700 hover:text-utama py-2 transition-colors">Informasi</a>
+                <a href="Berita.html" class="font-medium text-gray-700 hover:text-utama py-2 transition-colors">Berita</a>
+                <a href="Berita.html" class="font-medium text-gray-700 hover:text-utama py-2 transition-colors">Organisasi</a>
+                <a href="Berita.html" class="font-medium text-gray-700 hover:text-utama py-2 transition-colors">Guru & Staf</a>
+                <a href="Berita.html" class="font-medium text-gray-700 hover:text-utama py-2 transition-colors">Prestasi</a>
+                <a href="Berita.html" class="font-medium text-gray-700 hover:text-utama py-2 transition-colors">Fasilitas</a>
+            </nav>
+        </div>
+    </header>
+
+   <!-- BAGIAN SAMBUTAN KEPALA SEKOLAH & PROFIL SEKOLAH -->
+    <section class="py-32 px-6 lg:px-12 bg-netral"> 
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch"> 
+                
+                <!-- Kolom Sambutan Kepala Sekolah -->
+                <div class="bg-white rounded-2xl shadow-lembut p-8 lg:p-10 fade-in h-full flex flex-col">
+                    
+                    <h2 class="text-[clamp(1.4rem,3vw,1.8rem)] font-bold text-gray-800 mb-6 text-gradient">SAMBUTAN DARI KEPALA SEKOLAH </h2>
+                    
+                    <p class="text-gray-600 italic mb-4 text-justify">Assalamu'alaikum warahmatullahi wabarakatuh</p>
+                    
+                    <p class="text-gray-700 leading-relaxed mb-4 text-justify">
+                        Puji syukur kehadirat Allah SWT, Tuhan Yang Maha Esa, yang senantiasa melimpahkan rahmat, karunia, dan kesehatan kepada kita semua. Atas izin dan kuasa-Nya, kita dapat meluncurkan dan mengembangkan situs resmi SMAN 3 Gorontalo sebagai sarana informasi, komunikasi, dan publikasi bagi seluruh warga sekolah, masyarakat luas, dan pemangku kepentingan pendidikan.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed mb-4 text-justify">
+                        Shalawat serta salam semoga senantiasa tercurah kepada junjungan kita Nabi Besar Muhammad SAW, suri tauladan umat manusia yang telah membawa kita dari zaman kebodohan menuju zaman yang penuh dengan ilmu pengetahuan dan teknologi seperti saat ini.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed mb-4 text-justify">
+                        Selamat datang di situs resmi SMAN 3 Gorontalo. Melalui kesempatan ini, saya, mewakili seluruh tenaga pendidik dan kependidikan, mengucapkan terima kasih dan penghargaan setinggi-tingginya atas kunjungan Anda ke halaman ini. Kehadiran situs ini merupakan wujud nyata komitmen sekolah dalam mengikuti perkembangan zaman, serta upaya kami untuk meningkatkan pelayanan informasi pendidikan yang lebih transparan, cepat, dan mudah diakses oleh siapa saja, di mana saja.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed mb-4 text-justify">
+                        SMAN 3 Gorontalo memiliki tekad yang kuat untuk terus berperan aktif dalam mencerdaskan kehidupan bangsa. Kami berupaya menciptakan lingkungan pendidikan yang kondusif, inovatif, dan berkarakter, guna membekali peserta didik dengan ilmu pengetahuan, keterampilan, serta nilai-nilai luhur yang diperlukan untuk menghadapi tantangan masa depan. Kami tidak hanya berfokus pada pencapaian akademik, tetapi juga membentuk karakter siswa yang beriman, bertakwa, berakhlak mulia, serta memiliki jiwa nasionalisme dan kepedulian terhadap lingkungan.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed mb-4 text-justify">
+                        Dalam pengelolaan pendidikan, kami menyadari bahwa keberhasilan tidak dapat dicapai sendirian. Oleh karena itu, kami senantiasa membangun kerja sama yang erat dan harmonis antara sekolah, orang tua siswa, pemerintah, masyarakat, dan berbagai pihak terkait. Kolaborasi ini menjadi kunci utama dalam menciptakan suasana pendidikan yang berkualitas dan bermutu.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed mb-4 text-justify">
+                        Melalui situs ini, kami berharap dapat menyajikan berbagai informasi penting mulai dari profil sekolah, program kerja, kurikulum, kegiatan belajar mengajar, prestasi siswa, berita terkini, hingga berbagai pengumuman yang dibutuhkan. Situs ini juga kami jadikan sebagai wadah untuk menampilkan karya dan potensi luar biasa yang dimiliki oleh siswa-siswi SMAN 3 Gorontalo, agar dapat dikenal dan diapresiasi oleh masyarakat luas.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed mb-4 text-justify">
+                        Kami menyadari bahwa dalam pengelolaan situs ini masih terdapat kekurangan dan hal yang perlu disempurnakan. Oleh karena itu, kami sangat mengharapkan saran, masukan, dan kritik yang membangun dari pengunjung agar keberadaan situs ini dapat bermanfaat secara maksimal dan terus berkembang menjadi lebih baik.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed mb-8 text-justify">
+                        Akhir kata, semoga kehadiran situs resmi SMAN 3 Gorontalo ini dapat menjadi jembatan silaturahmi yang kokoh dan sarana penyebaran informasi yang bermanfaat bagi kemajuan dunia pendidikan di daerah kita tercinta. Mari kita bersama-sama membangun generasi penerus bangsa yang cerdas, beradab, dan berguna bagi nusa dan bangsa.
+                    </p>
+                    
+                    <p class="text-gray-600 italic mb-8 text-justify">Wassalamu'alaikum warahmatullahi wabarakatuh</p>
+                    
+                    <p class="text-gray-800 font-semibold mt-auto text-justify">Syaiful Kadir, M.Pd, S.Pd</p>
+                </div>
+
+                <!-- Kolom Foto Kepala Sekolah & Profil Sekolah -->
+                <div class="flex flex-col gap-8 h-full">
+                    
+                    <!-- Foto Kepala Sekolah -->
+                    <div class="bg-white rounded-2xl shadow-lembut overflow-hidden fade-in image-zoom">
+                        <div class="w-full h-auto">
+                            <img src="Gambar/Informasi/Foto Kepala Sekolah.jpg" alt="Kepala Sekolah - Syaiful Kadir, M.Pd, S.Pd" class="w-full h-auto object-cover">
+                        </div>
+                        <div class="p-5 text-center">
+                            <h3 class="text-lg font-bold text-gray-800">Syaiful Kadir, M.Pd, S.Pd</h3>
+                        </div>
+                    </div>
+
+                    <!-- Tabel Profil Sekolah -->
+                    <div class="bg-white rounded-2xl shadow-lembut p-6 fade-in flex-grow">
+                        <h2 class="text-xl font-bold text-gray-800 mb-5 pb-3 border-b-2 border-utama inline-block">PROFIL SEKOLAH</h2>
+                        
+                        <div class="overflow-x-auto">
+                            <table class="w-full table-info">
+                                <tr class="border-b border-abu">
+                                    <td class="py-3 pr-4">Nama Sekolah</td>
+                                    <td class="py-3">: SMA NEGERI 3 GORONTALO</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 pr-4">Naungan</td>
+                                    <td class="py-3">: Kementerian Pendidikan dan Kebudayaan</td>
+                                </tr>
+                                <tr class="border-b border-abu">
+                                    <td class="py-3 pr-4 w-1/3">Alamat</td>
+                                    <td class="py-3">: Jl. Achmad Nadjamuddin No. 35, Kota Gorontalo</td>
+                                </tr>
+                                <tr class="border-b border-abu">
+                                    <td class="py-3 pr-4">NPSN</td>
+                                    <td class="py-3">: 40501083</td>
+                                </tr>
+                                <tr class="border-b border-abu">
+                                    <td class="py-3 pr-4">Akreditasi</td>
+                                    <td class="py-3">: A</td>
+                                </tr>
+                                <tr class="border-b border-abu">
+                                    <td class="py-3 pr-4">No SK Akreditasi</td>
+                                    <td class="py-3">: 1347/BAN-SM/SK/2021</td>
+                                </tr>
+                                <tr class="border-b border-abu">
+                                    <td class="py-3 pr-4">Status</td>
+                                    <td class="py-3">: Negeri</td>
+                                </tr>
+                                <tr class="border-b border-abu">
+                                    <td class="py-3 pr-4">Jenjang Pendidikan</td>
+                                    <td class="py-3">: SMA</td>
+                                </tr>
+                                <tr class="border-b border-abu">
+                                    <td class="py-3 pr-4">SK Pendirian</td>
+                                    <td class="py-3">: 0258/0/1975</td>
+                                </tr>
+                                <tr class="border-b border-abu">
+                                    <td class="py-3 pr-4">Tanggal SK Pendirian</td>
+                                    <td class="py-3">: 0258/0/1975</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- BAGIAN VISI DAN MISI -->
+            <div class="mt-16 fade-in">
+                <div class="bg-white rounded-2xl shadow-lembut p-8 lg:p-10">
+                    <h2 class="text-[clamp(1.4rem,3vw,1.8rem)] font-bold text-center text-gray-800 mb-10 text-gradient">VISI DAN MISI SMAN 3 GORONTALO</h2>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                        
+                        <!-- VISI -->
+                        <div class="bg-gradient-to-br from-terang/20 to-muda/10 rounded-xl p-8 border-l-4 border-utama shadow-minimal">
+                            <div class="flex items-center gap-3 mb-5">
+                                <div class="w-10 h-10 rounded-full bg-utama text-white flex items-center justify-center text-xl">
+                                    <i class="fa fa-bullseye"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-gray-800">Visi</h3>
+                            </div>
+                            <p class="text-gray-700 text-lg italic leading-relaxed pl-2 text-justify">
+                                Unggul dibidang akademik dan non akademik, berkarakter Pancasila, berliterasi, dan berbudaya lingkungan serta mampu bersaing di tingkat nasional maupun internasional
+                            </p>
+                        </div>
+
+                        <!-- MISI -->
+                        <div class="bg-gradient-to-br from-terang/20 to-muda/10 rounded-xl p-8 border-l-4 border-muda shadow-minimal">
+                            <div class="flex items-center gap-3 mb-5">
+                                <div class="w-10 h-10 rounded-full bg-muda text-white flex items-center justify-center text-xl">
+                                    <i class="fa fa-bullseye"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-gray-800">Misi</h3>
+                            </div>
+                            <ul class="text-gray-700 space-y-3 pl-2 list-decimal list-inside">
+                                <li class="leading-relaxed text-justify">Mengembangkan peserta didik yang beriman, bertakwa kepada Tuhan Yang Maha Esa, dan berakhlak mulia, berkebinekaan global, bergotong royong, mandiri, bernalar kritis, dan kreatif.</li>
+                                <li class="leading-relaxed">Mengembangkan dan melaksanakan kurikulum berfokus pada karakter, kompetensi dan literasi.</li>
+                                <li class="leading-relaxed">Melaksanakan pembinaan dan pembiasaan setiap warga sekolah tentang lingkungan yang bersih dan sehat.</li>
+                                <li class="leading-relaxed">Melaksanakan pembiasaan, pengembangan dan pembelajaran penumbuhan budaya literasi sekolah.</li>
+                                <li class="leading-relaxed">Mengembangkan sarana dan prasarana, lingkungan sekolah, sebagai penunjang pembelajaran intrakurikuluer dan ekstrakurikuler.</li>
+                                <li class="leading-relaxed">Melaksanakan program pengembangan diri melalui bimbingan konseling dan ekstrakurikuler, khususnya pendidikan kepramukaan.</li>
+                                <li class="leading-relaxed">Mengembangkan dan melaksanakan pembinaan prestasi akademik dan non akademik baik tingkat lokal, nasional dan internasional.</li>
+                                <li class="leading-relaxed">Melaksanakan pembinaan dan pengembangan kemampuan peserta didik dalam melestarikan kearifan lokal dan nasional.</li>
+                                <li class="leading-relaxed">Mengembangkan sistem kelembagaan, organisasi, manajemen, administrasi, budaya kerja sinergis, serta pengembangan SDM warga sekolah melalui Manajemen Berbasis Sekolah.</li>
+                                <li class="leading-relaxed">Melaksanakan kerjasama dengan pihak-pihak tertentu dalam rangka layanan kegiatan akademik dan non akademik.</li>
+                            </ul>
+                        </div>
+                        <!-- TUJUAN -->
+                        <div class="bg-gradient-to-br from-terang/20 to-muda/10 rounded-xl p-8 border-l-4 border-muda shadow-minimal lg:col-span-2"  >
+                            <div class="flex items-center gap-3 mb-5">
+                                <div class="w-10 h-10 rounded-full bg-muda text-white flex items-center justify-center text-xl">
+                                    <i class="fa fa-bullseye"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-gray-800">TUJUAN</h3>
+                            </div>
+                            <ul class="text-gray-700 space-y-3 pl-2 list-decimal list-inside">
+                                <li class="leading-relaxed text-justify">Terwujudnya peserta didik yang beriman, bertakwa kepada Tuhan Yang Maha Esa, dan berakhlak mulia, berkebinekaan global, bergotong royong, mandiri, bernalar kritis, dan kreatif.</li>
+                                <li class="leading-relaxed">Terlaksananya kurikulum tingkat satuan pendidikan yang berfokus karakter, kompetensi dan literasi.</li>
+                                <li class="leading-relaxed">Terwujudnya budaya lingkungan bersih dan sehat oleh warga sekolah.</li>
+                                <li class="leading-relaxed">Terwujudnya pembiasaan, pengembangan dan pembelajaran penumbuhan budaya literasi sekolah.</li>
+                                <li class="leading-relaxed">Tersedianya sarana dan prasarana, lingkungan sekolah, sebagai penunjang pembelajaran intrakurikuluer dan ekstrakurikuler</li>
+                                <li class="leading-relaxed">Terlaksananya program pengembangan diri melalui bimbingan konseling dan ekstrakurikuler, khususnya pendidikan kepramukaan.</li>
+                                <li class="leading-relaxed">Memperoleh prestasi akademik dan nonakdemik baik tingkat lokal, nasional dan internasional.</li>
+                                <li class="leading-relaxed">Terlaksananya proses pendidikan menggunakan teknologi informasi.</li>
+                                <li class="leading-relaxed">Terwujudnya kemampuan peserta didik dalam melestarikan kearifan lokal dan nasional.</li>
+                                <li class="leading-relaxed">Terwujudnya sistem kelembagaan, organisasi, manajemen, administrasi, budaya kerja sinergis, serta pengembangan SDM warga sekolah melalui Manajemen Berbasis Sekolah.</li>
+                                <li class="leading-relaxed">Terwujudnya kerjasama dengan pihak-pihak tertentu dalam rangka layanan kegiatan akademik dan non akademik.</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TOMBOL SCROLL KE ATAS -->
+    <button id="scrollToTopBtn">↑</button>
+
+    <!-- FOOTER  -->
+    <footer class="bg-gradient-to-br from-gelap via-[#4A148C] to-gelap text-white pt-20 pb-8 fade-in relative overflow-hidden">
+        <!-- Elemen Dekorasi Latar -->
+        <div class="absolute top-0 left-0 w-full h-full opacity-5">
+            <div class="absolute -top-24 -right-24 w-96 h-96 bg-terang rounded-full blur-3xl"></div>
+            <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-utama rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="container mx-auto px-6 lg:px-12 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-16">
+                <!-- Tentang Sekolah -->
+                <div class="space-y-5">
+                    <div class="flex items-center gap-3 mb-2">
+                        <h4 class="text-xl font-bold text-white">SMAN 3 GORONTALO</h4>
+                    </div>
+                    <p class="text-gray-200 leading-relaxed">
+                        Mewujudkan siswa berprestasi, berkarakter, dan berwawasan luas melalui pendidikan unggulan dan sistem asrama terbaik sejak tahun 1975.
+                    </p>
+                    <div class="flex gap-3 pt-2">
+                        <a href="https://www.facebook.com/hubmas.smantig" class="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-sm hover:bg-utama flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lembut border border-white/10">
+                            <i class="fa fa-facebook text-lg"></i>
+                        </a>
+                        <a href="https://www.instagram.com/smantig.3media/" class="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-sm hover:bg-utama flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lembut border border-white/10">
+                            <i class="fa fa-instagram text-lg"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@smantig.3media" class="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-sm hover:bg-utama flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lembut border border-white/10">
+                            <i class="fa fa-youtube-play text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tautan Cepat -->
+                <div class="space-y-4">
+                    <h4 class="text-lg font-bold text-white relative inline-block pb-2">
+                        Tautan Cepat
+                        <span class="absolute -bottom-1 left-0 w-12 h-1 bg-terang rounded-full"></span>
+                    </h4>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="Beranda .html" class="text-gray-200 hover:text-white transition-colors flex items-center gap-2 group">
+                                <i class="fa fa-chevron-right text-xs text-terang/70 group-hover:translate-x-1 transition-transform"></i>
+                                Beranda
+                            </a>
+                        </li>
+                        <li>
+                            <a href="Informasi.html" class="text-gray-200 hover:text-white transition-colors flex items-center gap-2 group">
+                                <i class="fa fa-chevron-right text-xs text-terang/70 group-hover:translate-x-1 transition-transform"></i>
+                                Informasi Sekolah
+                            </a>
+                        </li>
+                        <li>
+                            <a href="Berita.html" class="text-gray-200 hover:text-white transition-colors flex items-center gap-2 group">
+                                <i class="fa fa-chevron-right text-xs text-terang/70 group-hover:translate-x-1 transition-transform"></i>
+                                Berita & Kegiatan
+                            </a>
+                        </li>
+                        <li>
+                            <a href="Berita.html" class="text-gray-200 hover:text-white transition-colors flex items-center gap-2 group">
+                                <i class="fa fa-chevron-right text-xs text-terang/70 group-hover:translate-x-1 transition-transform"></i>
+                                Organisasi
+                            </a>
+                        </li>
+                        <li>
+                            <a href="Berita.html" class="text-gray-200 hover:text-white transition-colors flex items-center gap-2 group">
+                                <i class="fa fa-chevron-right text-xs text-terang/70 group-hover:translate-x-1 transition-transform"></i>
+                                Fasilitas
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Fasilitas -->
+                <div class="space-y-4">
+                    <h4 class="text-lg font-bold text-white relative inline-block pb-2">
+                        Fasilitas
+                        <span class="absolute -bottom-1 left-0 w-12 h-1 bg-terang rounded-full"></span>
+                    </h4>
+                    <ul class="space-y-3 text-gray-200">
+                        <li class="flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors">
+                            <i class="fa fa-flask text-terang w-5 text-center"></i> 
+                            <span>Laboratorium Lengkap</span>
+                        </li>
+                        <li class="flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors">
+                            <i class="fa fa-book text-terang w-5 text-center"></i> 
+                            <span>Perpustakaan Modern</span>
+                        </li>
+                        <li class="flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors">
+                            <i class="fa fa-futbol-o text-terang w-5 text-center"></i> 
+                            <span>Lapangan Olahraga</span>
+                        </li>
+                        <li class="flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors">
+                            <i class="fa fa-cutlery text-terang w-5 text-center"></i> 
+                            <span>Kantin Sehat</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Informasi Kontak Kami -->
+                <div class="space-y-4">
+                    <h4 class="text-lg font-bold text-white relative inline-block pb-2">
+                        Kontak Kami
+                        <span class="absolute -bottom-1 left-0 w-12 h-1 bg-terang rounded-full"></span>
+                    </h4>
+                    <ul class="space-y-3 text-gray-200">
+                        <li class="flex items-start gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors">
+                            <i class="fa fa-map-marker text-terang w-5 text-center mt-1"></i> 
+                            <span>Jln. Drs. Achmad Nadjamudin, No. 35, Kota Gorontalo, Gorontalo</span>
+                        </li>
+                        <li class="flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors">
+                            <i class="fa fa-phone text-terang w-5 text-center"></i> 
+                            <span>(0435) 821455</span>
+                        </li>
+                        <li class="flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors">
+                            <i class="fa fa-envelope text-terang w-5 text-center"></i> 
+                            <span>smantiggorontalo2021@gmail.com</span>
+                        </li>
+                        <li class="flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors">
+                            <i class="fa fa-clock-o text-terang w-5 text-center"></i> 
+                            <span>Senin - Jumat: 07.15 - 15.30 WITA</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="border-t border-white/10 pt-8 mt-8 text-center">
+                
+                <p class="text-gray-400 text-sm">
+                    &copy; 2025 SMAN 3 GORONTALO - DIKELOLA OLEH TIM 3MEDIA SMANTIG
+                </p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // ANIMASI SCROLL FADE IN
+            const fadeElements = document.querySelectorAll('.fade-in');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                    }
+                });
+            }, { threshold: 0.1 });
+            fadeElements.forEach(el => observer.observe(el));
+
+            // TOMBOL SCROLL KE ATAS 
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
+            // Tampilkan tombol jika sudah gulir ke bawah
+            const toggleScrollBtn = () => {
+                if (document.documentElement.scrollTop > 300) {
+                    scrollToTopBtn.classList.add('show');
+                } else {
+                    scrollToTopBtn.classList.remove('show');
+                }
+            };
+
+            // Fungsi gulir ke atas saat diklik
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth' // Efek gulir halus
+                });
+            });
+
+            // Jalankan fungsi saat di-scroll
+            window.addEventListener('scroll', toggleScrollBtn);
+
+            // Cek posisi saat halaman baru dimuat
+            toggleScrollBtn();
+
+            // FUNGSI MENU HP
+            const menuToggle = document.getElementById('menuToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuIcon = document.getElementById('menuIcon');
+
+            menuToggle.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
+                // Ubah ikon dari garis jadi silang
+                if (mobileMenu.classList.contains('active')) {
+                    menuIcon.classList.remove('fa-bars');
+                    menuIcon.classList.add('fa-times');
+                } else {
+                    menuIcon.classList.remove('fa-times');
+                    menuIcon.classList.add('fa-bars');
+                }
+            });
+        });
+
+        // LAYAR PEMUATAN
+        window.addEventListener('load', function() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            loadingScreen.style.opacity = '0';
+            loadingScreen.style.visibility = 'hidden';
+            
+            // Menampilkan elemen dengan animasi fade-in setelah loading selesai
+            setTimeout(() => {
+                document.querySelectorAll('.fade-in').forEach(el => {
+                    el.classList.add('show');
+                });
+            }, 300);
+        });
+    </script>
+
+</body>
+</html>
